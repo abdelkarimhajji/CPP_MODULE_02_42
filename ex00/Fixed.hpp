@@ -6,7 +6,7 @@
 /*   By: ahajji <ahajji@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 13:15:53 by ahajji            #+#    #+#             */
-/*   Updated: 2023/12/02 09:00:44 by ahajji           ###   ########.fr       */
+/*   Updated: 2023/12/02 11:12:18 by ahajji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,13 @@
 class Fixed
 {
   private:
-    int number;
+    int value;
     static int const fractionalBits = 8;
 
-  // public:
-  //   void  print();
-  //   void  update();
+  public:
+    Fixed();
+    Fixed(Fixed &copy);
+    void set(int value);
+    void print();
+    Fixed& operator=(const Fixed& other) ;
 };
