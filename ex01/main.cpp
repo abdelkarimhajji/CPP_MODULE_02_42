@@ -15,7 +15,7 @@
 int main(void)
 {
     Fixed a(10);
-
+    
    a.print();
     return 0;
 }
