@@ -6,7 +6,7 @@
 /*   By: ahajji <ahajji@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 17:28:38 by ahajji            #+#    #+#             */
-/*   Updated: 2023/12/11 10:16:27 by ahajji           ###   ########.fr       */
+/*   Updated: 2023/12/12 11:56:06 by ahajji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,13 @@ Fixed::~Fixed()
     std::cout << "Destructor called" << std::endl;
 }
 
+Fixed::Fixed(const float float_number)
+{
+    this->value = float_number * static_cast<int>(pow(2, this->fractionalBits));
+}
+
 Fixed::Fixed(const int integer)
 {
-    // this->value = integer << this->fractionalBits;
     this->value = integer * static_cast<int>(pow(2, this->fractionalBits));
 }
 
