@@ -6,7 +6,7 @@
 /*   By: ahajji <ahajji@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 17:28:38 by ahajji            #+#    #+#             */
-/*   Updated: 2023/12/12 11:56:06 by ahajji           ###   ########.fr       */
+/*   Updated: 2023/12/12 14:38:23 by ahajji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ void Fixed::set(int value)
 void Fixed::print()
 {
     // this->value = value >> this->fractionalBits;
-    std::cout << this->value  << "\n";
+    
+    std::cout << this->value / static_cast<float>(pow(2, this->fractionalBits)) << "\n";
 }
 
 Fixed& Fixed::operator=(const Fixed& other) {
