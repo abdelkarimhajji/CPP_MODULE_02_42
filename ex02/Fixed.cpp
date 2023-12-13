@@ -6,7 +6,7 @@
 /*   By: ahajji <ahajji@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 17:28:38 by ahajji            #+#    #+#             */
-/*   Updated: 2023/12/13 12:09:41 by ahajji           ###   ########.fr       */
+/*   Updated: 2023/12/13 15:34:36 by ahajji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,4 +76,65 @@ int Fixed::getRawBits( void ) const
 void Fixed::setRawBits( int const raw )
 {
     this->value  =  raw;
+}
+
+bool  Fixed::operator<(const Fixed &other)
+{
+    return this->value < other.value;
+}
+
+bool  Fixed::operator>(const Fixed &other)
+{
+    return this->value > other.value;
+}
+
+bool  Fixed::operator<=(const Fixed &other)
+{
+    return this->value <= other.value;
+}
+
+bool  Fixed::operator>=(const Fixed &other)
+{
+    return this->value >= other.value;
+}
+
+bool  Fixed::operator==(const Fixed &other)
+{
+    return this->value == other.value;
+}
+
+bool  Fixed::operator!=(const Fixed &other)
+{
+    return this->value != other.value;
+}
+
+Fixed  Fixed::operator+(const Fixed &other)
+{
+    Fixed res;
+    res.value = this->value + other.value;
+    return res;
+}
+
+Fixed  Fixed::operator-(const Fixed &other)
+{
+    Fixed res;
+    
+    res.value = this->value - other.value;
+    return res;
+}
+
+Fixed   Fixed::operator*(const Fixed &other)
+{
+    Fixed res;
+
+    res.value = (this->value * other.value) / this->fractionalBits;
+    return res;
+}
+
+Fixed   Fixed::operator*(const Fixed &other)
+{
+    Fixed res;
+
+    res.value = (this->value / other.value) * this->fractionalBits;
+    return res;
 }
