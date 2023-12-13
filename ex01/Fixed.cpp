@@ -6,7 +6,7 @@
 /*   By: ahajji <ahajji@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 17:28:38 by ahajji            #+#    #+#             */
-/*   Updated: 2023/12/12 14:38:23 by ahajji           ###   ########.fr       */
+/*   Updated: 2023/12/13 12:09:41 by ahajji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,18 +25,20 @@ Fixed::~Fixed()
 
 Fixed::Fixed(const float float_number)
 {
+    std::cout << "Float contructer called" << std::endl;
     this->value = float_number * static_cast<int>(pow(2, this->fractionalBits));
 }
 
 Fixed::Fixed(const int integer)
 {
+    std::cout << "Int constructor called" << std::endl;
     this->value = integer * static_cast<int>(pow(2, this->fractionalBits));
 }
 
-Fixed::Fixed(Fixed &copy)
+Fixed::Fixed(Fixed const &copy)
 {
     std::cout << "Copy constructor called" << std::endl;
-    this->value = copy.getRawBits();
+    *this = copy;
 }
 
 void Fixed::set(int value)
@@ -44,11 +46,14 @@ void Fixed::set(int value)
     this->value = value;
 }
 
-void Fixed::print()
+float Fixed::toFloat( void ) const
 {
-    // this->value = value >> this->fractionalBits;
-    
-    std::cout << this->value / static_cast<float>(pow(2, this->fractionalBits)) << "\n";
+    return (this->value / static_cast<float>(pow(2, this->fractionalBits)));
+}
+
+int Fixed::toInt( void ) const
+{
+    return (this->value / static_cast<int>(pow(2, this->fractionalBits)));
 }
 
 Fixed& Fixed::operator=(const Fixed& other) {
@@ -57,9 +62,14 @@ Fixed& Fixed::operator=(const Fixed& other) {
     return *this;
 }
 
+std::ostream& operator<<(std::ostream& os, const Fixed& fi)
+{
+    os << fi.toFloat();
+    return os;
+}
+
 int Fixed::getRawBits( void ) const
 {
-    std::cout << "getRawBits member function called" << std::endl;
     return this->value;
 }
 
