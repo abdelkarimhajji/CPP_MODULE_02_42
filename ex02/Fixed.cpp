@@ -6,7 +6,7 @@
 /*   By: ahajji <ahajji@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 17:28:38 by ahajji            #+#    #+#             */
-/*   Updated: 2023/12/13 15:34:36 by ahajji           ###   ########.fr       */
+/*   Updated: 2023/12/13 15:45:33 by ahajji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,4 +137,15 @@ Fixed   Fixed::operator*(const Fixed &other)
 
     res.value = (this->value / other.value) * this->fractionalBits;
     return res;
+}
+
+Fixed   Fixed::operator++(void)
+{
+    this->value += 1;
+    return 
+}
+
+Fixed   Fixed::operator--(void)
+{
+    this->value -= 1;
 }
