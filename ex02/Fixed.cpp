@@ -6,7 +6,7 @@
 /*   By: ahajji <ahajji@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 17:28:38 by ahajji            #+#    #+#             */
-/*   Updated: 2023/12/13 15:45:33 by ahajji           ###   ########.fr       */
+/*   Updated: 2023/12/14 14:54:48 by ahajji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,29 +15,25 @@
 Fixed::Fixed()
 {
     this->value = 0;
-    std::cout << "Default constructor called" << std::endl;
 }
 
 Fixed::~Fixed()
 {
-    std::cout << "Destructor called" << std::endl;
+
 }
 
 Fixed::Fixed(const float float_number)
 {
-    std::cout << "Float contructer called" << std::endl;
     this->value = float_number * static_cast<int>(pow(2, this->fractionalBits));
 }
 
 Fixed::Fixed(const int integer)
 {
-    std::cout << "Int constructor called" << std::endl;
     this->value = integer * static_cast<int>(pow(2, this->fractionalBits));
 }
 
 Fixed::Fixed(Fixed const &copy)
 {
-    std::cout << "Copy constructor called" << std::endl;
     *this = copy;
 }
 
@@ -57,7 +53,6 @@ int Fixed::toInt( void ) const
 }
 
 Fixed& Fixed::operator=(const Fixed& other) {
-    std::cout << "Copy assignment operator called" << std::endl;
     this->value = other.getRawBits();
     return *this;
 }
@@ -127,11 +122,11 @@ Fixed   Fixed::operator*(const Fixed &other)
 {
     Fixed res;
 
-    res.value = (this->value * other.value) / this->fractionalBits;
+    res.value = (this->value * other.value) / (pow(2, this->fractionalBits));
     return res;
 }
 
-Fixed   Fixed::operator*(const Fixed &other)
+Fixed   Fixed::operator/(const Fixed &other)
 {
     Fixed res;
 
@@ -139,13 +134,49 @@ Fixed   Fixed::operator*(const Fixed &other)
     return res;
 }
 
-Fixed   Fixed::operator++(void)
+Fixed   &Fixed::operator++(void)
 {
     this->value += 1;
-    return 
+    return *this;
 }
 
-Fixed   Fixed::operator--(void)
+Fixed   &Fixed::operator--(void)
 {
     this->value -= 1;
+    return *this;
+}
+
+Fixed   Fixed::operator--(int)
+{
+    Fixed tmp = *this;
+    
+    (*this).value--;
+    return tmp;
+}
+
+Fixed   Fixed::operator++(int)
+{
+    Fixed tmp = *this;
+    
+    (*this).value++;
+    return tmp;
+}
+
+Fixed &Fixed::min(Fixed &fix1, Fixed &fix2)
+{
+    return fix1.getRawBits() > fix2.getRawBits() ? fix2 : fix1;
+}
+
+const Fixed &Fixed::min(const Fixed &fix1, const Fixed &fix2)
+{
+    return fix1.getRawBits() > fix2.getRawBits() ? fix2 : fix1;
+}
+
+Fixed &Fixed::max(Fixed &fix1, Fixed &fix2)
+{
+    return fix1.getRawBits() > fix2.getRawBits() ? fix1 : fix2;
+}
+const Fixed &Fixed::max(const Fixed &fix1, const Fixed &fix2)
+{
+    return fix1.getRawBits() > fix2.getRawBits() ? fix1 : fix2;
 }
