@@ -6,7 +6,7 @@
 /*   By: ahajji <ahajji@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 13:15:56 by ahajji            #+#    #+#             */
-/*   Updated: 2023/12/13 09:45:37 by ahajji           ###   ########.fr       */
+/*   Updated: 2023/12/15 09:55:26 by ahajji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,7 @@ Fixed::Fixed(Fixed &copy)
     this->value = copy.getRawBits();
 }
 
-void Fixed::set(int value)
-{
-    this->value = value;
-}
 
-void Fixed::print()
-{
-    std::cout << this->value << "\n";
-}
 
 Fixed& Fixed::operator=(const Fixed &other) {
  std::cout << "Copy assignment operator called" << std::endl;
